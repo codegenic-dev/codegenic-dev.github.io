@@ -1,76 +1,771 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charSet="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preload" href="./_next/static/media/569ce4b8f30dc480-s.p.woff2" as="font" crossorigin=""
-        type="font/woff2" />
-    <link rel="preload" href="./_next/static/media/93f479601ee12b01-s.p.woff2" as="font" crossorigin=""
-        type="font/woff2" />
-    <link rel="stylesheet" href="./_next/static/css/08d44d3a4ed0af83.css" data-precedence="next" />
-    <link rel="preload" as="script" fetchPriority="low" href="./_next/static/chunks/webpack-f029a09104d09cbc.js" />
-    <script src="./_next/static/chunks/4bd1b696-67ee12fb04071d3b.js" async=""></script>
-    <script src="./_next/static/chunks/684-1726a0fd22fca363.js" async=""></script>
-    <script src="./_next/static/chunks/main-app-9fba0546cd65bbff.js" async=""></script>
-    <script src="./_next/static/chunks/63-11f4d058746abff6.js" async=""></script>
-    <script src="./_next/static/chunks/app/page-eb7ed88b83c96319.js" async=""></script>
-    <meta name="next-size-adjust" content="" />
-    <title>codegenic</title>
-    <meta name="description" content="We build software that scales" />
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" sizes="256x256" />
-    <script>document.querySelectorAll('body link[rel="icon"], body link[rel="apple-touch-icon"]').forEach(el => document.head.appendChild(el))</script>
-    <script src="./_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeGenic - Cutting-Edge Software Solutions</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #1c1c1e;
+            --bg-tertiary: #2c2c2e;
+            --accent: #0a84ff;
+            --accent-hover: #409cff;
+            --accent-glow: rgba(10, 132, 255, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: #98989d;
+            --text-tertiary: #636366;
+            --border: #38383a;
+            --shadow: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(28, 28, 30, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 0.5px solid var(--border);
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(10, 132, 255, 0.15) 0%, transparent 70%);
+            top: -300px;
+            right: -300px;
+            animation: float 20s ease-in-out infinite;
+            filter: blur(40px);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(94, 92, 230, 0.12) 0%, transparent 70%);
+            bottom: -250px;
+            left: -250px;
+            animation: float-reverse 15s ease-in-out infinite;
+            filter: blur(40px);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            33% {
+                transform: translate(100px, -100px) rotate(120deg) scale(1.1);
+            }
+            66% {
+                transform: translate(-50px, 50px) rotate(240deg) scale(0.9);
+            }
+        }
+
+        @keyframes float-reverse {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            33% {
+                transform: translate(-80px, 80px) rotate(-120deg) scale(0.95);
+            }
+            66% {
+                transform: translate(60px, -60px) rotate(-240deg) scale(1.05);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% center;
+            }
+            100% {
+                background-position: -200% center;
+            }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+            animation: sparkleFloat 3s ease-out forwards;
+        }
+
+        @keyframes sparkleFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0);
+            }
+        }
+
+        /* Magnetic Button Effect */
+        .cta-button, .contact-button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before, .contact-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before, .contact-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 50%, var(--text-primary) 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 8s ease-in-out infinite;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            background: var(--accent);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(10, 132, 255, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(10, 132, 255, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(10, 132, 255, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 0.5px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            background: var(--bg-tertiary);
+            border-color: rgba(10, 132, 255, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(10, 132, 255, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .feature-card:nth-child(1) .feature-icon { animation-delay: 0s; }
+        .feature-card:nth-child(2) .feature-icon { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) .feature-icon { animation-delay: 0.4s; }
+        .feature-card:nth-child(4) .feature-icon { animation-delay: 0.6s; }
+        .feature-card:nth-child(5) .feature-icon { animation-delay: 0.8s; }
+        .feature-card:nth-child(6) .feature-icon { animation-delay: 1s; }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--bg-secondary);
+            border-top: 0.5px solid var(--border);
+            border-bottom: 0.5px solid var(--border);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .stat-item p {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            background: transparent;
+            color: var(--accent);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1.5px solid var(--accent);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 2rem;
+        }
+
+        .contact-button:hover {
+            background: var(--accent);
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(10, 132, 255, 0.3);
+        }
+
+        .contact-button:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--bg-secondary);
+            border-top: 0.5px solid var(--border);
+            text-align: center;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background: rgba(28, 28, 30, 0.95);
+                backdrop-filter: blur(20px) saturate(180%);
+                -webkit-backdrop-filter: blur(20px) saturate(180%);
+                flex-direction: column;
+                width: 100%;
+                padding: 2rem;
+                transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                border-top: 0.5px solid var(--border);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <img src="./logo.svg" alt="CodeGenic Logo">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#stats">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+    </nav>
 
-<body class="__variable_5cfdac __variable_9a8899 antialiased">
-    <main class="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white font-sans">
-        <section class="flex flex-col items-center justify-center text-center py-32 px-4">
-            <div class="w-64 h-64 mb-6"><img alt="Codegenic Logo" loading="lazy" width="260" height="260"
-                    decoding="async" data-nimg="1" style="color:transparent;width:260px;height:260px" src="./logo.svg" />
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Cutting-Edge Software Solutions</h1>
+            <p>Based in Greece, we craft innovative software that transforms ideas into reality. Empowering businesses worldwide with next-generation technology and exceptional engineering.</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <h2 class="section-title">What We Offer</h2>
+        <p class="section-subtitle">Comprehensive solutions designed to accelerate your digital transformation</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Optimized performance that delivers results at the speed of thought. Built for efficiency and scalability.</p>
             </div>
-            <p class="text-lg md:text-2xl max-w-2xl text-gray-300 mb-8">Cutting-edge software solutions engineered for
-                speed, precision, and the bleeding edge of innovation.</p><a
-                href="mailto:info@codegenic.dev?subject=Let%27s%20Build%20the%20Future"
-                class="inline-flex items-center text-lg px-6 py-4 rounded-2xl bg-purple-600 hover:bg-purple-500 shadow-lg"><svg
-                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-rocket mr-2 h-5 w-5" aria-hidden="true">
-                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z">
-                    </path>
-                    <path
-                        d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z">
-                    </path>
-                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
-                    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
-                </svg>Let’s Build the Future</a>
-        </section>
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 md:px-24 py-20">
-            <div class="bg-gray-900 rounded-2xl p-6 shadow-xl hover:shadow-purple-600/30 transition">
-                <h3 class="text-xl font-semibold mb-2">Next-Gen Tech</h3>
-                <p class="text-gray-400">Harnessing Go, blockchain, and edge computing for solutions that defy limits.
-                </p>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure by Design</h3>
+                <p>Enterprise-grade security measures protecting your data and ensuring compliance with industry standards.</p>
             </div>
-            <div class="bg-gray-900 rounded-2xl p-6 shadow-xl hover:shadow-purple-600/30 transition">
-                <h3 class="text-xl font-semibold mb-2">Tailored Systems</h3>
-                <p class="text-gray-400">Custom-built platforms bridging air, land, and digital frontiers.</p>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Beautiful Design</h3>
+                <p>Intuitive interfaces that users love. Every pixel crafted with attention to detail and user experience.</p>
             </div>
-            <div class="bg-gray-900 rounded-2xl p-6 shadow-xl hover:shadow-purple-600/30 transition">
-                <h3 class="text-xl font-semibold mb-2">Cyberpunk Spirit</h3>
-                <p class="text-gray-400">Software crafted with style and soul — the future coded today.</p>
+
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Scalable Solutions</h3>
+                <p>Infrastructure that grows with your business. From startup to enterprise, we've got you covered.</p>
             </div>
-        </section>
-        <footer class="text-center text-sm text-gray-500 py-12 border-t border-gray-700">© <!-- -->2025<!-- -->
-            Codegenic. All rights reserved.</footer>
-    </main><!--$--><!--/$--><!--$--><!--/$-->
-    <script src="./_next/static/chunks/webpack-f029a09104d09cbc.js" async=""></script>
-    <script>(self.__next_f = self.__next_f || []).push([0])</script>
-    <script>self.__next_f.push([1, "1:\"$Sreact.fragment\"\n2:I[7555,[],\"\"]\n3:I[1295,[],\"\"]\n4:I[3063,[\"63\",\"static/chunks/63-11f4d058746abff6.js\",\"974\",\"static/chunks/app/page-eb7ed88b83c96319.js\"],\"Image\"]\n5:I[9665,[],\"MetadataBoundary\"]\n7:I[9665,[],\"OutletBoundary\"]\na:I[4911,[],\"AsyncMetadataOutlet\"]\nc:I[9665,[],\"ViewportBoundary\"]\ne:I[6614,[],\"\"]\n:HL[\"./_next/static/media/569ce4b8f30dc480-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"./_next/static/media/93f479601ee12b01-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"./_next/static/css/08d44d3a4ed0af83.css\",\"style\"]\n"])</script>
-    <script>self.__next_f.push([1, "0:{\"P\":null,\"b\":\"MdT5y5YC-wvYm7lRVm0Nv\",\"p\":\"\",\"c\":[\"\",\"\"],\"i\":false,\"f\":[[[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],[\"\",[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"./_next/static/css/08d44d3a4ed0af83.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_5cfdac __variable_9a8899 antialiased\",\"children\":[\"$\",\"$L2\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L3\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]}]]}],{\"children\":[\"__PAGE__\",[\"$\",\"$1\",\"c\",{\"children\":[[\"$\",\"main\",null,{\"className\":\"min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white font-sans\",\"children\":[[\"$\",\"section\",null,{\"className\":\"flex flex-col items-center justify-center text-center py-32 px-4\",\"children\":[[\"$\",\"div\",null,{\"className\":\"w-64 h-64 mb-6\",\"children\":[\"$\",\"$L4\",null,{\"src\":\"./logo.svg\",\"alt\":\"Codegenic Logo\",\"width\":260,\"height\":260,\"style\":{\"width\":\"260px\",\"height\":\"260px\"}}]}],[\"$\",\"p\",null,{\"className\":\"text-lg md:text-2xl max-w-2xl text-gray-300 mb-8\",\"children\":\"Cutting-edge software solutions engineered for speed, precision, and the bleeding edge of innovation.\"}],[\"$\",\"a\",null,{\"href\":\"mailto:contact@codegenic.dev?subject=Let%27s%20Build%20the%20Future\",\"className\":\"inline-flex items-center text-lg px-6 py-4 rounded-2xl bg-purple-600 hover:bg-purple-500 shadow-lg\",\"children\":[[\"$\",\"svg\",null,{\"ref\":\"$undefined\",\"xmlns\":\"http://www.w3.org/2000/svg\",\"width\":24,\"height\":24,\"viewBox\":\"0 0 24 24\",\"fill\":\"none\",\"stroke\":\"currentColor\",\"strokeWidth\":2,\"strokeLinecap\":\"round\",\"strokeLinejoin\":\"round\",\"className\":\"lucide lucide-rocket mr-2 h-5 w-5\",\"aria-hidden\":\"true\",\"children\":[[\"$\",\"path\",\"m3kijz\",{\"d\":\"M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z\"}],[\"$\",\"path\",\"1fmvmk\",{\"d\":\"m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z\"}],[\"$\",\"path\",\"1f8sc4\",{\"d\":\"M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0\"}],[\"$\",\"path\",\"qeys4\",{\"d\":\"M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5\"}],\"$undefined\"]}],\"Let’s Build the Future\"]}]]}],[\"$\",\"section\",null,{\"className\":\"grid grid-cols-1 md:grid-cols-3 gap-8 px-8 md:px-24 py-20\",\"children\":[[\"$\",\"div\",null,{\"className\":\"bg-gray-900 rounded-2xl p-6 shadow-xl hover:shadow-purple-600/30 transition\",\"children\":[[\"$\",\"h3\",null,{\"className\":\"text-xl font-semibold mb-2\",\"children\":\"Next-Gen Tech\"}],[\"$\",\"p\",null,{\"className\":\"text-gray-400\",\"children\":\"Harnessing Go, blockchain, and edge computing for solutions that defy limits.\"}]]}],[\"$\",\"div\",null,{\"className\":\"bg-gray-900 rounded-2xl p-6 shadow-xl hover:shadow-purple-600/30 transition\",\"children\":[[\"$\",\"h3\",null,{\"className\":\"text-xl font-semibold mb-2\",\"children\":\"Tailored Systems\"}],[\"$\",\"p\",null,{\"className\":\"text-gray-400\",\"children\":\"Custom-built platforms bridging air, land, and digital frontiers.\"}]]}],[\"$\",\"div\",null,{\"className\":\"bg-gray-900 rounded-2xl p-6 shadow-xl hover:shadow-purple-600/30 transition\",\"children\":[[\"$\",\"h3\",null,{\"className\":\"text-xl font-semibold mb-2\",\"children\":\"Cyberpunk Spirit\"}],[\"$\",\"p\",null,{\"className\":\"text-gray-400\",\"children\":\"Software crafted with style and soul — the future coded today.\"}]]}]]}],[\"$\",\"footer\",null,{\"className\":\"text-center text-sm text-gray-500 py-12 border-t border-gray-700\",\"children\":[\"© \",2025,\" Codegenic. All rights reserved.\"]}]]}],[\"$\",\"$L5\",null,{\"children\":\"$L6\"}],null,[\"$\",\"$L7\",null,{\"children\":[\"$L8\",\"$L9\",[\"$\",\"$La\",null,{\"promise\":\"$@b\"}]]}]]}],{},null,false]},null,false],[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$1\",\"94hZUqeUMvyTcwv1bJhEL\",{\"children\":[[\"$\",\"$Lc\",null,{\"children\":\"$Ld\"}],[\"$\",\"meta\",null,{\"name\":\"next-size-adjust\",\"content\":\"\"}]]}],null]}],false]],\"m\":\"$undefined\",\"G\":[\"$e\",\"$undefined\"],\"s\":false,\"S\":true}\n"])</script>
-    <script>self.__next_f.push([1, "f:\"$Sreact.suspense\"\n10:I[4911,[],\"AsyncMetadata\"]\n6:[\"$\",\"$f\",null,{\"fallback\":null,\"children\":[\"$\",\"$L10\",null,{\"promise\":\"$@11\"}]}]\n"])</script>
-    <script>self.__next_f.push([1, "9:null\n"])</script>
-    <script>self.__next_f.push([1, "d:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n8:null\n"])</script>
-    <script>self.__next_f.push([1, "11:{\"metadata\":[[\"$\",\"title\",\"0\",{\"children\":\"codegenic\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"We build software that scales\"}],[\"$\",\"link\",\"2\",{\"rel\":\"icon\",\"href\":\"./favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"256x256\"}]],\"error\":null,\"digest\":\"$undefined\"}\nb:{\"metadata\":\"$11:metadata\",\"error\":null,\"digest\":\"$undefined\"}\n"])</script>
+
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Innovation First</h3>
+                <p>Leveraging the latest technologies to keep you ahead of the competition and drive growth.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>24/7 Support</h3>
+                <p>Dedicated team ready to assist you anytime. Your success is our priority, around the clock.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section id="stats" class="stats">
+        <h2 class="section-title">Why Choose Codegenic</h2>
+        <p class="section-subtitle">Built on principles that drive excellence</p>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>🎯</h3>
+                <p>Quality Over Quantity</p>
+            </div>
+            <div class="stat-item">
+                <h3>🔬</h3>
+                <p>Research-Driven Approach</p>
+            </div>
+            <div class="stat-item">
+                <h3>🌍</h3>
+                <p>Global Standards</p>
+            </div>
+            <div class="stat-item">
+                <h3>⚡</h3>
+                <p>Agile Delivery</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <h2 class="section-title">Ready to Start?</h2>
+            <p class="section-subtitle">Let's bring your vision to life. Get in touch with our team and discover how we can help transform your business.</p>
+            <a href="mailto:hello@codegenic.dev" class="contact-button">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#" aria-label="GitHub">◉</a>
+            <a href="#" aria-label="Twitter">◉</a>
+            <a href="#" aria-label="LinkedIn">◉</a>
+        </div>
+        <p>&copy; 2026 CodeGenic. Based in Greece. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Add scroll effect to navigation
+        let lastScroll = 0;
+        const nav = document.querySelector('nav');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                nav.style.padding = '1rem 5%';
+            } else {
+                nav.style.padding = '1.5rem 5%';
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Sparkle effect on click
+        let lastSparkleTime = 0;
+        const sparkleDelay = 100; // Limit sparkles to every 100ms
+
+        document.addEventListener('click', (e) => {
+            const now = Date.now();
+            if (now - lastSparkleTime < sparkleDelay) return;
+            lastSparkleTime = now;
+
+            createSparkles(e.clientX, e.clientY, 5);
+        });
+
+        function createSparkles(x, y, count) {
+            for (let i = 0; i < count; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+
+                const offsetX = (Math.random() - 0.5) * 40;
+                const offsetY = (Math.random() - 0.5) * 40;
+
+                sparkle.style.left = (x + offsetX) + 'px';
+                sparkle.style.top = (y + offsetY) + 'px';
+
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => sparkle.remove(), 3000);
+            }
+        }
+
+        // Magnetic effect on buttons
+        const buttons = document.querySelectorAll('.cta-button, .contact-button');
+
+        buttons.forEach(button => {
+            button.addEventListener('mousemove', (e) => {
+                const rect = button.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                const distance = Math.sqrt(x * x + y * y);
+                const maxDistance = 50;
+
+                if (distance < maxDistance) {
+                    const strength = (maxDistance - distance) / maxDistance;
+                    const moveX = (x / distance) * strength * 5;
+                    const moveY = (y / distance) * strength * 5;
+
+                    button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                }
+            });
+
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Random ambient sparkles
+        setInterval(() => {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+
+            if (Math.random() > 0.97) { // Only 3% chance
+                createSparkles(x, y, 1);
+            }
+        }, 500);
+
+        // Parallax effect on hero content
+        const heroContent = document.querySelector('.hero-content');
+
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+            if (heroContent && window.scrollY < window.innerHeight) {
+                heroContent.style.transform = `translate(${x}px, ${y}px)`;
+            }
+        });
+    </script>
 </body>
-
 </html>
